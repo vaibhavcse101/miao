@@ -1,5 +1,16 @@
 ---
+import '../styles/global.css';
+const identity = {
+  firstName: "Miao",
+  country: "China and Uk",
+  occupation: "Language Teacher",
+  hobbies: ["travel", "noodles", "fighting"]
+};
 
+const skills = ["Chinese Language","photography","baking"];
+const skillColor = "navy";
+const fontWeight ="bold";
+const textCase ="uppercase";
 ---
 <html lang="en">
 	<head>
@@ -7,7 +18,18 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro sdsdsd</title>
+		<style define:vars={{skillColor,fontWeight,textCase}}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+	  .skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+	text-transform: var(--textCase);
+  }
+    </style>
+		<title>About</title>
 	</head>
 	<body>
 <body>
@@ -15,7 +37,17 @@
 <a href="/about/">About</a>
   <a href="/blog/">Blog</a>
 
-  <h1>My Astro Site</h1>
-</body>
+<h1>Here are a few facts about me:</h1>
+<ul>
+  <li>My name is {identity.firstName}.</li>
+  <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+  {identity.hobbies.length >= 2 &&
+    <li>Three of my hobbies are: {identity.hobbies[0]},{identity.hobbies[1]} and {identity.hobbies[2]}</li>
+  }
+</ul>
+<p>My skills are:</p>
+<ul>
+  {skills.map((skill) => <li class="skill">{skill}</li>)}
+</ul></body>
 </html>
   
